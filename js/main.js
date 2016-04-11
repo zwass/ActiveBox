@@ -10,18 +10,6 @@ $(document).ready(function() {
 		}
 	});
 
-	// Waypoints
-	$('.work').waypoint(function() {
-		$('.work').addClass('animated fadeIn');
-	}, {
-		offset: '75%'
-	});
-	$('.download').waypoint(function() {
-		$('.download .btn').addClass('animated tada');
-	}, {
-		offset: '75%'
-	});
-
 	// Fancybox
 	$('.work-box').fancybox();
 
@@ -33,7 +21,8 @@ $(document).ready(function() {
 
 	// Page Scroll
 	var sections = $('section')
-		nav = $('nav[role="navigation"]');
+		 nav = $('nav[role="navigation"]')
+        topcontainer = $('#topcontainer');
 
 	$(window).on('scroll', function () {
 	  	var cur_pos = $(this).scrollTop();
@@ -54,13 +43,21 @@ $(document).ready(function() {
 		}, 500);
 	  return false;
 	});
+	topcontainer.find('a').on('click', function () {
+	  	var $el = $(this)
+	    	id = $el.attr('href');
+		$('html, body').animate({
+			scrollTop: $(id).offset().top - 75
+		}, 500);
+	  return false;
+	});
 
 	// Mobile Navigation
 	$('.nav-toggle').on('click', function() {
 		$(this).toggleClass('close-nav');
 		nav.toggleClass('open');
 		return false;
-	});	
+	});
 	nav.find('a').on('click', function() {
 		$('.nav-toggle').toggleClass('close-nav');
 		nav.toggleClass('open');
